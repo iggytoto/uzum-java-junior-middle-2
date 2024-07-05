@@ -1,18 +1,14 @@
 package com.example.demo.services;
 
 import com.example.demo.domain.Cage;
-import com.example.demo.infrastructure.AnimalRepository;
-import com.example.demo.infrastructure.CageRepository;
+import com.example.demo.infrastructure.dal.CageRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc

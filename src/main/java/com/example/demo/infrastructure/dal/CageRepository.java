@@ -1,4 +1,4 @@
-package com.example.demo.infrastructure;
+package com.example.demo.infrastructure.dal;
 
 import com.example.demo.domain.Cage;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,8 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.controllers.dto.AnimalDto;
-import com.example.demo.domain.Animal;
-import com.example.demo.infrastructure.AnimalRepository;
+import com.example.demo.infrastructure.dal.AnimalRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
@@ -16,7 +15,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 

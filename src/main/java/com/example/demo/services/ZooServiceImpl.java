@@ -2,10 +2,13 @@ package com.example.demo.services;
 
 import com.example.demo.domain.Animal;
 import com.example.demo.domain.Cage;
-import com.example.demo.infrastructure.AnimalRepository;
-import com.example.demo.infrastructure.CageRepository;
+import com.example.demo.infrastructure.dal.AnimalRepository;
+import com.example.demo.infrastructure.dal.CageRepository;
+import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -18,6 +21,8 @@ public class ZooServiceImpl implements ZooService {
 
     private final ExternalService externalService;
 
+    private final EntityManager entityManager;
+
 
     @Override
     public List<Cage> getAllCages() {
@@ -25,11 +30,12 @@ public class ZooServiceImpl implements ZooService {
     }
 
     @Override
+    @Transactional(isolation = Isolation.DEFAULT)
     public Cage putAnimalInTheCage(int animalId, int cageId) {
         final Animal animal = animalRepository.findById(animalId).orElseThrow();
         final Cage cage = cageRepository.findById(cageId).orElseThrow();
 
-        cage.getAnimals().add(animal);
+        cage.setAnimal(animal);
 
         cageRepository.save(cage);
         return cage;
@@ -49,5 +55,10 @@ public class ZooServiceImpl implements ZooService {
     @Override
     public Cage createCage() {
         return cageRepository.save(new Cage());
+    }
+
+    @Override
+    public List<Animal> getAnimalByName(String name) {
+        return animalRepository.getAnimalsByName(name);
     }
 }

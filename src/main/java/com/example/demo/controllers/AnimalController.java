@@ -19,9 +19,16 @@ public class AnimalController {
     private final Converter<AnimalDto, Animal> animalDtoConverter;
 
 
+
+
     @GetMapping("/all")
     public List<AnimalDto> getAllAnimals() {
         return zooService.getAllAnimals().stream().map(animalDtoConverter::convertBack).toList();
+    }
+
+    @GetMapping("/name/{value}")
+    public List<AnimalDto> getAnimalByName(@PathVariable("value") String name) {
+        return zooService.getAnimalByName(name).stream().map(animalDtoConverter::convertBack).toList();
     }
 
     @GetMapping("/test/{pathparam1}/{pathparam2}/")
@@ -30,7 +37,7 @@ public class AnimalController {
             @PathVariable("pathparam2") String pp2,
             @RequestParam("queryp1") String qp1,
             @RequestBody Object rb
-    ){
+    ) {
         System.out.println("Asdasdasd");
     }
 

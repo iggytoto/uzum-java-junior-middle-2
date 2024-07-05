@@ -17,4 +17,6 @@ public interface ZooService {
     Animal registerNewAnimal(Animal animal);
 
     Cage createCage();
+
+    List<Animal> getAnimalByName(String name);
 }

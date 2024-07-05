@@ -1,8 +1,6 @@
 package com.example.demo.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -12,8 +10,10 @@ import lombok.RequiredArgsConstructor;
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class Animal {
+
     @Id
     @GeneratedValue
     private int id;
-    private String Name;
+
+    private String name;
 }

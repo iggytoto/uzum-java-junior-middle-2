@@ -1,9 +1,6 @@
 package com.example.demo.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.collection.spi.PersistentSet;
 
@@ -18,7 +15,10 @@ public class Cage {
     @GeneratedValue
     private int number;
 
-    @OneToMany()
-    private Set<Animal> animals = new HashSet<>();
+    @OneToOne
+    private Animal animal;
+
+    @ManyToMany
+    private Set<Region> regions = new HashSet();
 
 }

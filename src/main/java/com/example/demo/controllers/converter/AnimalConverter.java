@@ -14,7 +14,7 @@ public class AnimalConverter implements Converter<AnimalDto, Animal> {
 
     @Override
     public AnimalDto convertBack(Animal t) {
-        final var result =  new AnimalDto();
+        final var result = new AnimalDto();
         result.setId(t.getId());
         result.setName(t.getName());
         return result;
