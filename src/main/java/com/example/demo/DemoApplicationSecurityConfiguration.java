@@ -23,34 +23,16 @@ import org.springframework.security.web.SecurityFilterChain;
 @RequiredArgsConstructor
 public class DemoApplicationSecurityConfiguration {
 
-    @Autowired
-    private final UserDetailsService userDetailsService;
-
     @Bean
     protected SecurityFilterChain chain(HttpSecurity http) throws Exception {
         http.
                 csrf(AbstractHttpConfigurer::disable).
                 cors(AbstractHttpConfigurer::disable).
-                authorizeHttpRequests(c -> c.requestMatchers("/user/**").permitAll().anyRequest().authenticated()).
-                httpBasic(Customizer.withDefaults());
+                authorizeHttpRequests(c -> c.
+                        requestMatchers("/cage/**").permitAll().
+                        requestMatchers("/animal/**").authenticated()).
+                oauth2ResourceServer(c -> c.jwt(jwtConfigurer -> {}));
         return http.build();
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public AuthenticationProvider provider() {
-        final var daoProvider = new DaoAuthenticationProvider();
-        daoProvider.setPasswordEncoder(passwordEncoder());
-        daoProvider.setUserDetailsService(userDetailsService);
-        return daoProvider;
-    }
-
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
-        return configuration.getAuthenticationManager();
-    }
 }
