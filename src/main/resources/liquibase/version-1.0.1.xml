@@ -1,0 +1,24 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet id="version-1.0.1" author="iggytoto">
+        <validCheckSum>
+            8:0d6cae5ba8f366901f99b68710b0013b
+        </validCheckSum>
+        <preConditions>
+            <changeSetExecuted id="initial-1" author="iggytoto" changeLogFile="liquibase/initial.xml"/>
+        </preConditions>
+        <createTable tableName="animal">
+            <column name="id" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar">
+                <constraints unique="true"/>
+            </column>
+            <column name="test" type="varchar"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
