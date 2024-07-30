@@ -30,7 +30,7 @@ public class DemoApplicationSecurityConfiguration {
                 cors(AbstractHttpConfigurer::disable).
                 authorizeHttpRequests(c -> c.
                         requestMatchers("/cage/**").permitAll().
-                        requestMatchers("/animal/**").authenticated()).
+                        requestMatchers("/animal/**").permitAll()).
                 oauth2ResourceServer(c -> c.jwt(jwtConfigurer -> {}));
         return http.build();
     }

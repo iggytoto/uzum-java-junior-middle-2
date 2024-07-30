@@ -4,6 +4,7 @@ import com.example.demo.controllers.converter.AnimalConverter;
 import com.example.demo.controllers.converter.Converter;
 import com.example.demo.controllers.dto.AnimalDto;
 import com.example.demo.domain.Animal;
+import com.example.demo.services.KafkaService;
 import com.example.demo.services.ZooService;
 import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,8 @@ import java.util.List;
 public class AnimalController {
     private final ZooService zooService;
     private final Converter<AnimalDto, Animal> animalDtoConverter;
+
+    private final KafkaService kafkaService;
 
 
 
@@ -45,6 +48,11 @@ public class AnimalController {
     @PostMapping("/add")
     public AnimalDto saveNewAnimal(@RequestBody() AnimalDto animal) {
         return animalDtoConverter.convertBack(zooService.registerNewAnimal(animalDtoConverter.convert(animal)));
+    }
+
+    @PostMapping("/addToQueue")
+    public void saveNewAnimalQueue(@RequestBody() AnimalDto animal) {
+        kafkaService.send(animalDtoConverter.convert(animal));
     }
 
 }
