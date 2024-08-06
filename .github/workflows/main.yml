@@ -23,9 +23,6 @@ jobs:
         run: mvn test
       - name: install
         run: mvn install -DskipTests
-  dockerbuild:
-    runs-on: ubuntu-latest
-    steps:
       - name: setup
         uses: docker/setup-buildx-action@v3.6.1
       -
@@ -38,5 +35,6 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v6
         with:
+          context: .
           push: true
           tags: iggytoto/uzum-test:latest
