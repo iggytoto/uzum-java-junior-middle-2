@@ -1,0 +1,19 @@
+name: uzum cicd basic
+on:
+  push:
+    branches: ["master","develop"]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: setup java and maven
+        uses: actions/setup-java@v3
+        with:
+          java-version: '22'
+          distribution: 'temurin'
+          cache: maven
+      - name: test run
+        run: mvn test
