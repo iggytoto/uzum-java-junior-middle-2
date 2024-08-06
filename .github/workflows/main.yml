@@ -1,0 +1,24 @@
+name: uzum cicd example
+
+on:
+  push:
+    branches: ['cicdtest']
+
+jobs:
+  prep:
+    name: clean and install application
+    runs-on: ubuntu latest
+    steps:
+      - name: setup java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '22'
+          distribution: 'temurin'
+          cache: maven
+      - name: clean
+        run: mvn clean
+      - name: test
+        run: mvn test
+      - name: install
+        run: mvn install -DskipTests
+          
