@@ -2,7 +2,7 @@ name: uzum cicd example
 
 on:
   push:
-    branches: ['cicdtest']
+    branches: ['cicdtest','master','develop']
 
 jobs:
   prep:
