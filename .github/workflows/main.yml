@@ -23,6 +23,9 @@ jobs:
         run: mvn test
       - name: install
         run: mvn install -DskipTests
+  dockerbuild:
+    runs-on: ubuntu-latest
+    steps:
       - name: setup
         uses: docker/setup-buildx-action@v3.6.1
       -
