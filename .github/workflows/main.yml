@@ -9,6 +9,8 @@ jobs:
     name: clean and install application
     runs-on: ubuntu latest
     steps:
+      - name: checkou
+        uses: actions/checkout@v3
       - name: setup java
         uses: actions/setup-java@v3
         with:
