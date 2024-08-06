@@ -23,4 +23,6 @@ jobs:
         run: mvn test
       - name: install
         run: mvn install -DskipTests
+      - name: build docker image
+        run: docker build --tag=latest
           
